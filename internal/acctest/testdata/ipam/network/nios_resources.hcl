@@ -1797,6 +1797,8 @@ case "update_dns_on_lease_renewal" {
 case "vlans" {
   backend  = "nios"
   parallel = true
+  skip = true
+  skip_reason = "VLAN needs to be added"
   # prerequisites_hcl = <<-PREREQ
   # resource "infoblox_vlan_view" "test_vlan_view" {
   #   nios = {
