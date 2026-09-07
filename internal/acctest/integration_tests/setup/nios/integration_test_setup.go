@@ -2097,7 +2097,7 @@ func main() {
 
 	certMember := strings.TrimSpace(hostnames.MasterHostname)
 
-	caCertUploadFilePath := filepath.Join(cwd, "internal/testdata/nios_security_certificate_authservice", "cert.pem")
+	caCertUploadFilePath := filepath.Join(cwd, "internal/acctest/integration_tests/nios_security_certificate_authservice", "cert.pem")
 
 	err = ConfigureCACertificates(host, wapiVer, username, password, "EAP_CA", certMember, caCertUploadFilePath, "NIOS_CA_CERT1_REF", "NIOS_CA_CERT1_SERIAL")
 	if err != nil {
@@ -2106,7 +2106,7 @@ func main() {
 	}
 	fmt.Println("CA certificate 1 configured successfully")
 
-	caCertUploadFilePath2 := filepath.Join(cwd, "internal/testdata/nios_notification_rest_endpoint", "dummy-bundle.pem")
+	caCertUploadFilePath2 := filepath.Join(cwd, "internal/acctest/integration_tests/nios_notification_rest_endpoint", "dummy-bundle.pem")
 
 	err = ConfigureCACertificates(host, wapiVer, username, password, "EAP_CA", certMember, caCertUploadFilePath2, "NIOS_CA_CERT2_REF", "NIOS_CA_CERT2_SERIAL")
 	if err != nil {
@@ -2115,7 +2115,7 @@ func main() {
 	}
 	fmt.Println("CA certificate 2 configured successfully")
 
-	ecosystemTemplatePath := filepath.Join(cwd, "internal/testdata/nios_ecosystem_templates", "Version5_DXL_Session_Template.json")
+	ecosystemTemplatePath := filepath.Join(cwd, "internal/acctest/integration_tests/nios_ecosystem_templates", "Version5_DXL_Session_Template.json")
 
 	if _, statErr := os.Stat(ecosystemTemplatePath); statErr == nil {
 		err = ConfigureEcoSystemTemplates(host, wapiVer, username, password, ecosystemTemplatePath)
@@ -2131,7 +2131,7 @@ func main() {
 		return
 	}
 
-	ecosystemTemplatePath2 := filepath.Join(cwd, "internal/testdata/nios_ecosystem_templates", "Version5_Syslog_Session_Template.json")
+	ecosystemTemplatePath2 := filepath.Join(cwd, "internal/acctest/integration_tests/nios_ecosystem_templates", "Version5_Syslog_Session_Template.json")
 
 	if _, statErr := os.Stat(ecosystemTemplatePath2); statErr == nil {
 		err = ConfigureEcoSystemTemplates(host, wapiVer, username, password, ecosystemTemplatePath2)
@@ -2147,7 +2147,7 @@ func main() {
 		return
 	}
 
-	ecosystemTemplatePath3 := filepath.Join(cwd, "internal/testdata/nios_ecosystem_templates", "Version5_Syslog_Action_Template.json")
+	ecosystemTemplatePath3 := filepath.Join(cwd, "internal/acctest/integration_tests/nios_ecosystem_templates", "Version5_Syslog_Action_Template.json")
 
 	if _, statErr := os.Stat(ecosystemTemplatePath3); statErr == nil {
 		err = ConfigureEcoSystemTemplates(host, wapiVer, username, password, ecosystemTemplatePath3)
@@ -2163,7 +2163,7 @@ func main() {
 		return
 	}
 
-	ecosystemTemplatePath4 := filepath.Join(cwd, "internal/testdata/nios_ecosystem_templates", "Version5_DXL_action_template.json")
+	ecosystemTemplatePath4 := filepath.Join(cwd, "internal/acctest/integration_tests/nios_ecosystem_templates", "Version5_DXL_action_template.json")
 
 	if _, statErr := os.Stat(ecosystemTemplatePath4); statErr == nil {
 		err = ConfigureEcoSystemTemplates(host, wapiVer, username, password, ecosystemTemplatePath4)
@@ -2179,7 +2179,7 @@ func main() {
 		return
 	}
 
-	ecosystemTemplatePath5 := filepath.Join(cwd, "internal/testdata/nios_ecosystem_templates", "Version5_DNS_Zone_and_Records.json")
+	ecosystemTemplatePath5 := filepath.Join(cwd, "internal/acctest/integration_tests/nios_ecosystem_templates", "Version5_DNS_Zone_and_Records.json")
 
 	if _, statErr := os.Stat(ecosystemTemplatePath5); statErr == nil {
 		err = ConfigureEcoSystemTemplates(host, wapiVer, username, password, ecosystemTemplatePath5)
@@ -2195,7 +2195,7 @@ func main() {
 		return
 	}
 
-	ecosystemTemplatePath6 := filepath.Join(cwd, "internal/testdata/nios_ecosystem_templates", "Version5_REST_API_Session_Template.json")
+	ecosystemTemplatePath6 := filepath.Join(cwd, "internal/acctest/integration_tests/nios_ecosystem_templates", "Version5_REST_API_Session_Template.json")
 
 	if _, statErr := os.Stat(ecosystemTemplatePath6); statErr == nil {
 		err = ConfigureEcoSystemTemplates(host, wapiVer, username, password, ecosystemTemplatePath6)
@@ -2211,7 +2211,7 @@ func main() {
 		return
 	}
 
-	ecosystemTemplatePath7 := filepath.Join(cwd, "internal/testdata/nios_ecosystem_templates", "event_dhcp_lease_template.json")
+	ecosystemTemplatePath7 := filepath.Join(cwd, "internal/acctest/integration_tests/nios_ecosystem_templates", "event_dhcp_lease_template.json")
 
 	if _, statErr := os.Stat(ecosystemTemplatePath7); statErr == nil {
 		err = ConfigureEcoSystemTemplates(host, wapiVer, username, password, ecosystemTemplatePath7)
@@ -2227,7 +2227,7 @@ func main() {
 		return
 	}
 
-	ecosystemTemplatePath8 := filepath.Join(cwd, "internal/testdata/nios_ecosystem_templates", "Version5_DNS_Zone_and_Records.json")
+	ecosystemTemplatePath8 := filepath.Join(cwd, "internal/acctest/integration_tests/nios_ecosystem_templates", "Version5_DNS_Zone_and_Records.json")
 
 	if _, statErr := os.Stat(ecosystemTemplatePath8); statErr == nil {
 		err = ConfigureEcoSystemTemplates(host, wapiVer, username, password, ecosystemTemplatePath8)
@@ -2243,7 +2243,7 @@ func main() {
 		return
 	}
 
-	ecosystemTemplatePath9 := filepath.Join(cwd, "internal/testdata/nios_ecosystem_templates", "IPAM_PxgridEvent.json")
+	ecosystemTemplatePath9 := filepath.Join(cwd, "internal/acctest/integration_tests/nios_ecosystem_templates", "IPAM_PxgridEvent.json")
 
 	if _, statErr := os.Stat(ecosystemTemplatePath9); statErr == nil {
 		err = ConfigureEcoSystemTemplates(host, wapiVer, username, password, ecosystemTemplatePath9)
@@ -2259,7 +2259,7 @@ func main() {
 		return
 	}
 
-	ecosystemTemplatePath10 := filepath.Join(cwd, "internal/testdata/nios_ecosystem_templates", "Version5_Syslog_Session_Template1.json")
+	ecosystemTemplatePath10 := filepath.Join(cwd, "internal/acctest/integration_tests/nios_ecosystem_templates", "Version5_Syslog_Session_Template1.json")
 
 	if _, statErr := os.Stat(ecosystemTemplatePath10); statErr == nil {
 		err = ConfigureEcoSystemTemplates(host, wapiVer, username, password, ecosystemTemplatePath10)
@@ -2275,7 +2275,7 @@ func main() {
 		return
 	}
 
-	ecosystemTemplatePath11 := filepath.Join(cwd, "internal/testdata/nios_ecosystem_templates", "Version5_DXL_Session_Template1.json")
+	ecosystemTemplatePath11 := filepath.Join(cwd, "internal/acctest/integration_tests/nios_ecosystem_templates", "Version5_DXL_Session_Template1.json")
 
 	if _, statErr := os.Stat(ecosystemTemplatePath11); statErr == nil {
 		err = ConfigureEcoSystemTemplates(host, wapiVer, username, password, ecosystemTemplatePath11)
@@ -2291,7 +2291,7 @@ func main() {
 		return
 	}
 
-	ecosystemTemplatePath12 := filepath.Join(cwd, "internal/testdata/nios_ecosystem_templates", "Version5_REST_API_Session_Template1.json")
+	ecosystemTemplatePath12 := filepath.Join(cwd, "internal/acctest/integration_tests/nios_ecosystem_templates", "Version5_REST_API_Session_Template1.json")
 
 	if _, statErr := os.Stat(ecosystemTemplatePath12); statErr == nil {
 		err = ConfigureEcoSystemTemplates(host, wapiVer, username, password, ecosystemTemplatePath12)
@@ -2307,7 +2307,7 @@ func main() {
 		return
 	}
 
-	ecosystemTemplatePath13 := filepath.Join(cwd, "internal/testdata/nios_ecosystem_templates", "event_template_schema_default.json")
+	ecosystemTemplatePath13 := filepath.Join(cwd, "internal/acctest/integration_tests/nios_ecosystem_templates", "event_template_schema_default.json")
 
 	if _, statErr := os.Stat(ecosystemTemplatePath13); statErr == nil {
 		err = ConfigureEcoSystemTemplates(host, wapiVer, username, password, ecosystemTemplatePath13)
@@ -2344,7 +2344,7 @@ func main() {
 	}
 	fmt.Println("Pre-configuration completed successfully")
 
-	pxgridCertUploadFilePath := filepath.Join(cwd, "internal/testdata/nios_notification_rest_endpoint", "dummy-bundle.pem")
+	pxgridCertUploadFilePath := filepath.Join(cwd, "internal/acctest/integration_tests/nios_notification_rest_endpoint", "dummy-bundle.pem")
 	err = ConfigurePxgridEndpoint(host, wapiVer, username, password, pxgridCertUploadFilePath, apiClient.MiscAPI)
 	if err != nil {
 		fmt.Printf("Error configuring pxGrid endpoint: %v\n", err)
