@@ -136,7 +136,7 @@ func CreateOptionGroups(ctx context.Context, client *uddiclient.APIClient) error
 
 		resp, _, err := client.IPAddressManagementAPI.OptionGroupAPI.Create(ctx).Body(body).Execute()
 		if err != nil {
-			if strings.Contains(err.Error(), "already exists") || strings.Contains(err.Error(), "conflict") {
+			if strings.Contains(err.Error(), "is already an existing") || strings.Contains(err.Error(), "conflict") {
 				// Fetch the existing group's ID
 				listResp, _, listErr := client.IPAddressManagementAPI.OptionGroupAPI.List(ctx).Execute()
 				if listErr != nil {
