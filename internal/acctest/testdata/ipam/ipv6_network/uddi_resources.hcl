@@ -436,7 +436,7 @@ case "ddns_generated_prefix" {
 case "dhcp_options" {
   backend           = "uddi"
   parallel          = true
-  skip_if_env_empty = ["UDDI_OPTION_GROUP_1_ID"]
+  skip_if_env_empty = ["UDDI_OPTION_GROUP_2_ID"]
   skip_reason       = "UDDI_OPTION_GROUP_1_ID environment variable must be set for this test to run"
   prerequisites_hcl = <<-PREREQ
   resource "infoblox_network_view" "test" {
@@ -487,12 +487,12 @@ case "dhcp_options" {
       cidr         = 128
       space        = infoblox_network_view.test.id
       name         = "{{random2}}"
-      dhcp_options = [{ type = "group", group = "{{uddi_option_group_1_id}}" }]
+      dhcp_options = [{ type = "group", group = "{{uddi_option_group_2_id}}" }]
     }
     check = {
       "uddi.dhcp_options.#"       = "1"
       "uddi.dhcp_options.0.type"  = "group"
-      "uddi.dhcp_options.0.group" = "{{uddi_option_group_1_id}}"
+      "uddi.dhcp_options.0.group" = "{{uddi_option_group_2_id}}"
     }
   }
 
