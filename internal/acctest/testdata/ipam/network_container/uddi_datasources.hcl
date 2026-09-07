@@ -3,7 +3,7 @@ case "filters" {
   backend  = "uddi"
   parallel = true
   # prerequisites_hcl = <<-PREREQ
-  # resource "infoblox_ip_space" "test" {
+  # resource "infoblox_network_view" "test" {
   #   uddi = {
   #     name = "{{random}}"
   #   }
@@ -34,7 +34,7 @@ case "tag_filters" {
   backend  = "uddi"
   parallel = true
   # prerequisites_hcl = <<-PREREQ
-  # resource "infoblox_ip_space" "test" {
+  # resource "infoblox_network_view" "test" {
   #   uddi = {
   #     name = "{{random}}"
   #   }

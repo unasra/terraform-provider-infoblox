@@ -1,7 +1,6 @@
 # Auto-generated datasource acceptance-test cases for HaGroup.
 #  TODO: Objects to be present in the grid for testing
-#  dhcp/host/470520,
-#  dhcp/host/470521
+#  DHCP Hosts
 case "filters" {
   backend = "uddi"
 
@@ -17,8 +16,8 @@ case "filters" {
   step {
     uddi {
       hosts = [
-        { host = "dhcp/host/470520", role = "active" },
-        { host = "dhcp/host/470521", role = "active" }
+        { host = "{{uddi_dhcp_host_id_1}}", role = "active" },
+        { host = "{{uddi_dhcp_host_id_2}}", role = "active" }
       ]
       name = "{{random}}"
       mode = "active-active"
@@ -42,8 +41,8 @@ case "tag_filters" {
   step {
     uddi {
       hosts = [
-        { host = "dhcp/host/470520", role = "active" },
-        { host = "dhcp/host/470521", role = "passive" }
+        { host = "{{uddi_dhcp_host_id_1}}", role = "active" },
+        { host = "{{uddi_dhcp_host_id_2}}", role = "passive" }
       ]
       name = "{{random}}"
       mode = "active-passive"

@@ -787,7 +787,7 @@ case "ip_spaces" {
   backend = "uddi"
   parallel = true
   # prerequisites_hcl = <<-PREREQ
-  # resource "infoblox_ip_space" "test_space" {
+  # resource "infoblox_network_view" "test_space" {
   #   uddi = {
   #     name = "{{random2}}"
   #   }

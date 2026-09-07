@@ -3,7 +3,7 @@ case "basic" {
   backend        = "uddi"
   min_tf_version = "1.14.0"
   # prerequisites_hcl = <<-PREREQ
-  # resource "infoblox_ip_space" "test" {
+  # resource "infoblox_network_view" "test" {
   #   uddi = {
   #     name = "{{random}}"
   #   }
@@ -14,7 +14,7 @@ case "basic" {
     uddi {
       address = "{{random_ipv4_network}}"
       cidr    = 24
-      # space   = infoblox_ip_space.test.id
+      # space   = infoblox_network_view.test.id
       space = "ipam/ip_space/1fd490b2-8847-11f1-a8d8-2a72d414108a"
     }
   }
@@ -31,7 +31,7 @@ case "filters" {
   backend        = "uddi"
   min_tf_version = "1.14.0"
   # prerequisites_hcl = <<-PREREQ
-  # resource "infoblox_ip_space" "test" {
+  # resource "infoblox_network_view" "test" {
   #   uddi = {
   #     name = "{{random}}"
   #   }
@@ -42,7 +42,7 @@ case "filters" {
     uddi {
       address = "{{random_ipv4_network}}"
       cidr    = 24
-      # space   = infoblox_ip_space.test.id
+      # space   = infoblox_network_view.test.id
       space = "ipam/ip_space/1fd490b2-8847-11f1-a8d8-2a72d414108a"
     }
   }
@@ -66,7 +66,7 @@ case "tag_filters" {
   backend        = "uddi"
   min_tf_version = "1.14.0"
   # prerequisites_hcl = <<-PREREQ
-  # resource "infoblox_ip_space" "test" {
+  # resource "infoblox_network_view" "test" {
   #   uddi = {
   #     name = "{{random}}"
   #   }
@@ -77,7 +77,7 @@ case "tag_filters" {
     uddi {
       address = "{{random_ipv4_network}}"
       cidr    = 24
-      # space   = infoblox_ip_space.test.id
+      # space   = infoblox_network_view.test.id
       space = "ipam/ip_space/1fd490b2-8847-11f1-a8d8-2a72d414108a"
       tags  = { tag1 = "{{random}}" }
     }

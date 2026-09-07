@@ -281,43 +281,54 @@ case "ddns_generated_prefix" {
 }
 
 case "dhcp_options" {
-  backend     = "uddi"
-  parallel    = true
-  # prerequisites_hcl = <<-PREREQ
-  # resource "infoblox_dhcp_option_code_unknown" "test" {
-  #   uddi = {
-  #     code = 234
-  #     name = "test_dhcp_option_code"
-  #     option_space = infoblox_dhcp_option_space_unknown.test.id
-  #     type = "boolean"
-  #   }
-  # }
-  # resource "infoblox_dhcp_option_group_unknown" "test" {
-  #   uddi = {
-  #     name = "\"og-\"+name"
-  #     protocol = "ip4"
-  #   }
-  # }
-  # PREREQ
+  backend           = "uddi"
+  parallel          = true
+  skip_if_env_empty = ["UDDI_OPTION_GROUP_1_ID"]
+  skip_reason       = "UDDI_OPTION_GROUP_1_ID environment variable must be set for this test to run"
+  prerequisites_hcl = <<-PREREQ
+  resource "infoblox_dhcp_optionspace" "test" {
+    uddi = {
+      name = "{{random3}}"
+    }
+  }
+  resource "infoblox_dhcp_optiondefinition" "test" {
+    uddi = {
+      code = 234
+      name = "{{random4}}"
+      option_space = infoblox_dhcp_optionspace.test.id
+      type = "boolean"
+    }
+  }
+
+//   resource "infoblox_dhcp_option_group_unknown" "test" {
+//       uddi = {
+//         name = "\"og-\"+optionSpace"
+//         protocol = "ip4"
+//       }
+//   }
+  PREREQ
 
   step {
     uddi {
       name         = "{{random}}"
-      dhcp_options = [{ type = "option", option_code = "dhcp/option_code/4b9ddf44-e2e3-4f1c-a3aa-4e508933feed", option_value = "456456" }]
+      dhcp_options = [{ type = "option", option_code = infoblox_dhcp_optiondefinition.test.id, option_value = "true" }]
     }
     check = {
       "uddi.dhcp_options.#"              = "1"
       "uddi.dhcp_options.0.type"         = "option"
-      "uddi.dhcp_options.0.option_value" = "456456"
+      "uddi.dhcp_options.0.option_value" = "true"
     }
   }
 
   step {
     uddi {
       name         = "{{random}}"
+      dhcp_options = [{ type = "group", group = "{{uddi_option_group_1_id}}" }]
     }
     check = {
-      "uddi.dhcp_options.#" = "0"
+      "uddi.dhcp_options.#"       = "1"
+      "uddi.dhcp_options.0.type"  = "group"
+      "uddi.dhcp_options.0.group" = "{{uddi_option_group_1_id}}"
     }
   }
 

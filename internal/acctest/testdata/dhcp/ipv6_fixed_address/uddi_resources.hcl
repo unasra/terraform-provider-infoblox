@@ -1,5 +1,5 @@
 # Auto-generated resource acceptance-test cases for Ipv6fixedaddress.
-// Objects to be present for testing - Option Group
+// TODO : Objects to be present for testing - Option Group
 case "basic" {
   backend  = "uddi"
   parallel = true
@@ -211,6 +211,8 @@ case "disable_dhcp" {
 case "dhcp_options" {
   backend  = "uddi"
   parallel = true
+  skip_if_env_empty = ["UDDI_OPTION_GROUP_1_ID"]
+  skip_reason       = "UDDI_OPTION_GROUP_1_ID environment variable must be set for this test to run"
   prerequisites_hcl = <<-PREREQ
   resource "infoblox_network_view" "test" {
     uddi = {
@@ -237,6 +239,13 @@ case "dhcp_options" {
       type = "boolean"
     }
   }
+
+//   resource "infoblox_dhcp_option_group_unknown" "test" {
+//       uddi = {
+//         name = "\"og-\"+optionSpace"
+//         protocol = "ip4"
+//       }
+//   }
   PREREQ
 
   step {
@@ -263,13 +272,13 @@ case "dhcp_options" {
       match_type   = "mac"
       match_value  = "aa:aa:aa:aa:aa:aa"
       name         = "{{random2}}"
-      dhcp_options = [{ type = "group", group = "dhcp/option_group/6cd7648b-28b0-4f4b-ae49-4daaaa2ac16e" }]
+      dhcp_options = [{ type = "group", group = "{{uddi_option_group_1_id}}" }]
     }
     depends_on = [infoblox_ipv6_network.test]
     check = {
       "uddi.dhcp_options.#"       = "1"
       "uddi.dhcp_options.0.type"  = "group"
-      "uddi.dhcp_options.0.group" = "dhcp/option_group/6cd7648b-28b0-4f4b-ae49-4daaaa2ac16e"
+      "uddi.dhcp_options.0.group" = "{{uddi_option_group_1_id}}"
     }
   }
 

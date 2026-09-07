@@ -22,6 +22,7 @@ import (
 	"strings"
 
 	uddiclient "github.com/infobloxopen/universal-ddi-go-client/client"
+	"github.com/infobloxopen/universal-ddi-go-client/dnsconfig"
 	"github.com/infobloxopen/universal-ddi-go-client/ipam"
 	uddioption "github.com/infobloxopen/universal-ddi-go-client/option"
 )
@@ -119,16 +120,18 @@ func StoreDHCPHostIDs(ctx context.Context, client *uddiclient.APIClient) error {
 // If a group already exists, its existing ID is stored instead.
 func CreateOptionGroups(ctx context.Context, client *uddiclient.APIClient) error {
 	optionGroups := []struct {
-		name  string
-		idVar string
+		name     string
+		protocol string
+		idVar    string
 	}{
-		{name: "tf_test_option_group_1", idVar: "UDDI_OPTION_GROUP_1_ID"},
-		{name: "tf_test_option_group_2", idVar: "UDDI_OPTION_GROUP_2_ID"},
+		{name: "tf_option_group_1", protocol: "ip4", idVar: "UDDI_OPTION_GROUP_1_ID"},
+		{name: "tf_option_group_2", protocol: "ip6", idVar: "UDDI_OPTION_GROUP_2_ID"},
 	}
 
 	for _, og := range optionGroups {
 		body := ipam.OptionGroup{
-			Name: og.name,
+			Name:     og.name,
+			Protocol: dnsconfig.PtrString(og.protocol),
 		}
 
 		resp, _, err := client.IPAddressManagementAPI.OptionGroupAPI.Create(ctx).Body(body).Execute()

@@ -14,3 +14,4 @@ internal/service/*/.openapi-generator-ignore
 **/.DS_Store
 .vscode/
 .idea/
+pipeline.env

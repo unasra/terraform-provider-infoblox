@@ -1,6 +1,5 @@
 // Objects to be present on the grid for testing
-// dns host
-// internal forwarders
+// DNS Hosts
 
 # Auto-generated resource acceptance-test cases for ZoneForward.
 case "basic" {
@@ -218,26 +217,30 @@ case "forward_only" {
 }
 
 case "hosts" {
-  backend  = "uddi"
-  parallel = true
+  backend           = "uddi"
+  parallel          = true
+  skip_if_env_empty = ["UDDI_DNS_HOST_ID_1","UDDI_DNS_HOST_ID_2"]
+  skip_reason       = "UDDI_DNS_HOST_ID_1 and UDDI_DNS_HOST_ID_2 environment variable must be set for this test to run"
 
   step {
     uddi {
-      fqdn = "{{random}}.com."
-      hosts = ["dns/host/470522"]
+      fqdn  = "{{random}}.com."
+      hosts = ["{{uddi_dns_host_id_1}}"]
     }
     check = {
       "uddi.hosts.#" = "1"
+      "uddi.hosts.0" = "{{uddi_dns_host_id_1}}"
     }
   }
 
   step {
     uddi {
-      fqdn = "{{random}}.com."
-      hosts = ["dns/host/470521"]
+      fqdn  = "{{random}}.com."
+      hosts = ["{{uddi_dns_host_id_2}}"]
     }
     check = {
       "uddi.hosts.#" = "1"
+      "uddi.hosts.0" = "{{uddi_dns_host_id_2}}"
     }
   }
 
@@ -246,24 +249,28 @@ case "hosts" {
 case "internal_forwarders" {
   backend  = "uddi"
   parallel = true
+  skip_if_env_empty = ["UDDI_DNS_HOST_ID_1","UDDI_DNS_HOST_ID_2"]
+  skip_reason       = "UDDI_DNS_HOST_ID_1 and UDDI_DNS_HOST_ID_2 environment variable must be set for this test to run"
 
   step {
     uddi {
       fqdn = "{{random}}.com."
-      internal_forwarders = ["dns/host/470521"]
+      internal_forwarders = ["{{uddi_dns_host_id_1}}"]
     }
     check = {
       "uddi.internal_forwarders.#" = "1"
+      "uddi.internal_forwarders.0" = "{{uddi_dns_host_id_1}}"
     }
   }
 
   step {
     uddi {
       fqdn = "{{random}}.com."
-      internal_forwarders = ["dns/host/470522"]
+      internal_forwarders = ["{{uddi_dns_host_id_2}}"]
     }
     check = {
       "uddi.internal_forwarders.#" = "1"
+      "uddi.internal_forwarders.0" = "{{uddi_dns_host_id_2}}"
     }
   }
 
